@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  db:
+    image: "mongo:latest"
+    networks:
+      - default
+  pract1:
+    restart: always
+    build: .
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - default
+    depends_on:
+      - "db"
+    ports:
+      - 3001:3001
+    
+    stdin_open: true
+    tty: true
